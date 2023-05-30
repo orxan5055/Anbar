@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Anbar System</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="container my-2">
+		<a th:href="@{/}" class="btn btn-danger" style="float:right;"/>Çıxış et</a>
+		<h1 style="text-align:center;margin-bottom:20px;">Anbar Listi</h1>
+
+		<a th:href="@{/newItemForm}" class="btn btn-success btn-sm mb-3">Ehtiyyati Əlavə Et</a>
+
+		<a th:href="@{/findByCode}" class="btn btn-danger btn-sm mb-3" style="text-align:right;">Koda gore axtaris et</a>
+
+
+		<table  border="1" class= "table table-striped table-responsive-md" id="listItems">
+			<thead>
+				<tr>
+					<th>Ehtiyyat Kodu </th>
+					<th>Ehtiyyatin Adı</th>
+					<th>Ölçü Vahidi</th>
+					<th>Ehtiyyatın olduğu adres</th>
+					<th>Ehtiyyatin gonderildiyi tarix</th>
+					<th>Emeliyyatlar</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr th:each="anbar : ${listItems}">
+				<td th:text="${anbar.item_code}"></td>
+				<td th:text="${anbar.itemName}"></td>
+				<td th:text="${anbar.qty}"></td>
+				<td th:text="${anbar.address}"></td>
+				<td datatype="date" th:text="${anbar.date}"></td>
+
+					<td><a th:href="@{/updateItem/{id}(id=${anbar.id})}" class="btn btn-primary">Update</a>
+					<a th:href="@{/deleteAnbar/{id}(id=${anbar.id})}" class="btn btn-danger">Delete</a></td>
+
+				</tr>
+			</tbody>
+
+		</table>
+
+	</div>
+
+</body>
+</html>
